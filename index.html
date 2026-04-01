@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>🌾 Бабушка Наташа — Чемпионка мира по вареникам! 🌾</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 10% 30%, #fdf8e7, #f9e0b0);
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.08"><path fill="%23b35f1f" d="M20,30 Q30,20 40,30 T60,30 T80,30 L85,40 Q80,50 70,48 T55,55 L45,55 Q35,55 30,48 T20,40 L20,30Z"/><circle cx="50" cy="45" r="4" fill="%23b35f1f"/></svg>');
+      background-repeat: repeat;
+      background-size: 60px;
+      pointer-events: none;
+    }
+
+    .card {
+      max-width: 680px;
+      width: 100%;
+      background: rgba(255, 251, 240, 0.96);
+      backdrop-filter: blur(6px);
+      border-radius: 72px;
+      box-shadow: 0 35px 60px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(255, 215, 150, 0.8), 0 0 0 8px rgba(255, 200, 120, 0.3);
+      overflow: hidden;
+      text-align: center;
+      padding: 34px 28px 44px;
+      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      z-index: 20;
+      border: 1px solid #ffe2b5;
+    }
+
+    .card:hover {
+      transform: scale(1.01);
+    }
+
+    .avatar {
+      width: 160px;
+      height: 160px;
+      background: linear-gradient(145deg, #ffcd94, #ffb45e);
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 30px rgba(160, 80, 20, 0.4);
+      border: 5px solid #fff4e2;
+      position: relative;
+    }
+
+    .avatar i {
+      font-size: 88px;
+      color: #fff0db;
+      filter: drop-shadow(2px 8px 12px rgba(0,0,0,0.2));
+    }
+
+    .crown-icon {
+      position: absolute;
+      top: -20px;
+      right: 5px;
+      font-size: 48px;
+      filter: drop-shadow(0 4px 6px gold);
+      color: #ffcd7e;
+    }
+
+    .gold-medal {
+      position: absolute;
+      bottom: -10px;
+      left: -10px;
+      font-size: 40px;
+      filter: drop-shadow(0 2px 8px gold);
+      color: #ffd966;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      background: linear-gradient(135deg, #b45a2c, #e07c3c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+
+    .badge-varenyky {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #2d2b26e0;
+      backdrop-filter: blur(8px);
+      padding: 8px 24px;
+      border-radius: 100px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffefc0;
+      margin-bottom: 20px;
+      border: 1px solid #ffcd88;
+    }
+
+    .description {
+      font-size: 1.15rem;
+      line-height: 1.55;
+      color: #492812;
+      background: #fff7ec;
+      padding: 22px 24px;
+      border-radius: 60px;
+      margin: 18px 0;
+      font-weight: 500;
+      border: 1px solid #ffddb0;
+      text-align: left;
+    }
+
+    .varenyky-highlight {
+      display: inline-block;
+      background: #f5bc70;
+      color: #2c1a0a;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin: 0 4px;
+      font-size: 1.1rem;
+    }
+
+    .olympiad-text {
+      background: linear-gradient(135deg, #ffecd2, #ffd9b5);
+      padding: 18px;
+      border-radius: 48px;
+      margin-top: 20px;
+      border-left: 8px solid #ffb347;
+      font-weight: 600;
+    }
+
+    .olympiad-text i {
+      color: #e67e22;
+      margin-right: 8px;
+    }
+
+    .qualities {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin: 25px 0 20px;
+    }
+
+    .quality {
+      background: white;
+      border-radius: 50px;
+      padding: 10px 20px;
+      font-weight: 700;
+      color: #b4521c;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+      border: 1px solid #ffe0b5;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .quality i {
+      margin-right: 10px;
+      color: #e07a3a;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .heart-btn {
+      background: linear-gradient(105deg, #f75c3c, #e63a2c);
+      border: none;
+      padding: 16px 28px;
+      border-radius: 80px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: 0.25s ease;
+      box-shadow: 0 14px 28px rgba(230, 50, 30, 0.5);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .stop-btn {
+      background: linear-gradient(105deg, #6c757d, #495057);
+      border: none;
+      padding: 16px 28px;
+      border-radius: 80px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: 0.25s ease;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .stop-btn:hover {
+      transform: scale(1.02);
+      background: linear-gradient(105deg, #5a626e, #343a40);
+    }
+
+    .heart-btn:hover {
+      transform: scale(1.02);
+      background: linear-gradient(105deg, #ff4f2c, #d92b1a);
+    }
+
+    .heart-btn:active, .stop-btn:active {
+      transform: scale(0.97);
+    }
+
+    .heart-btn:disabled, .stop-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .heaven-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      overflow: hidden;
+    }
+
+    .floating-heart {
+      position: absolute;
+      bottom: -60px;
+      pointer-events: none;
+      will-change: transform, opacity;
+      animation: floatUpLove linear forwards;
+      z-index: 10000;
+      text-shadow: 0 0 6px rgba(255,80,80,0.6);
+    }
+
+    @keyframes floatUpLove {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-130vh) rotate(420deg);
+        opacity: 0;
+      }
+    }
+
+    .info-note {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      background: rgba(255, 230, 190, 0.8);
+      backdrop-filter: blur(4px);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #87471b;
+    }
+
+    .progress-bar-container {
+      margin-top: 20px;
+      width: 100%;
+      background: rgba(0,0,0,0.1);
+      border-radius: 20px;
+      height: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #ff6a5c, #ff3b4a);
+      border-radius: 20px;
+      transition: width 0.3s ease;
+    }
+
+    .stats {
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: #b27a48;
+      font-weight: 600;
+    }
+
+    footer {
+      margin-top: 25px;
+      font-size: 0.75rem;
+      color: #b27a48;
+      font-weight: 500;
+    }
+
+    @media (max-width: 550px) {
+      .card {
+        padding: 24px 18px 32px;
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+      .description {
+        font-size: 1rem;
+        padding: 18px;
+      }
+      .heart-btn, .stop-btn {
+        padding: 10px 18px;
+        font-size: 1rem;
+      }
+      .avatar {
+        width: 130px;
+        height: 130px;
+      }
+      .avatar i {
+        font-size: 68px;
+      }
+      .button-group {
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="avatar">
+    <i class="fas fa-female"></i>
+    <div class="crown-icon"><i class="fas fa-crown"></i></div>
+    <div class="gold-medal"><i class="fas fa-medal"></i></div>
+  </div>
+  <h1>🌻 Бабушка Наташа 🌻</h1>
+  <div class="badge-varenyky">
+    <i class="fas fa-utensils"></i> Абсолютная чемпионка кулинарного мира <i class="fas fa-trophy"></i>
+  </div>
+  
+  <div class="description">
+    <i class="fas fa-quote-left" style="margin-right: 8px; opacity: 0.7; float: left;"></i>
+    <p>В мире нет бабушки добрее и талантливей, чем <strong>Наташа</strong>. Её 
+    <span class="varenyky-highlight"><i class="fas fa-dumpling"></i> вареники с капустой</span> 
+    и 
+    <span class="varenyky-highlight"><i class="fas fa-potato"></i> вареники с картошкой</span> 
+    — настоящий кулинарный шедевр! С пылу с жару, со сметанкой и хрустящей поджаркой — 
+    от одного воспоминания душа поёт.</p>
+    
+    <div class="olympiad-text">
+      <i class="fas fa-trophy"></i> <strong>🏆 Если бы существовала Олимпиада по готовке — ОЛИМПИАДА БЛИНОВ, ПЕЛЬМЕНЕЙ И ВАРЕНИКОВ 🏆</strong><br>
+      Бабушка Наташа забрала бы <strong class="varenyky-highlight">ВСЕ ЗОЛОТЫЕ МЕДАЛИ</strong>!<br>
+      <i class="fas fa-star"></i> <strong>Блины</strong> — тончайшие, кружевные, тают во рту!<br>
+      <i class="fas fa-star"></i> <strong>Пельмени</strong> — сибирские, сочные, с секретным фаршем!<br>
+      <i class="fas fa-star"></i> <strong>Вареники</strong> — с капустой и картошкой — вне конкуренции!<br>
+      <i class="fas fa-crown"></i> Судьи бы плакали от счастья, а конкуренты просили бы рецепт на коленях!
+    </div>
+    
+    <p style="margin-top: 15px;">Именитый шеф-повар однажды сказал: <i class="fas fa-quote-right"></i> «Я 50 лет готовлю, но таких вареников, как у Наташи, я не ел никогда! Это уровень богов!» <i class="fas fa-heart" style="color:#e67e22;"></i></p>
+    <i class="fas fa-quote-right" style="margin-left: 8px; opacity: 0.7; float: right;"></i>
+  </div>
+  
+  <div class="qualities">
+    <span class="quality"><i class="fas fa-dumpling"></i> Вареники с капустой</span>
+    <span class="quality"><i class="fas fa-seedling"></i> Вареники с картошкой</span>
+    <span class="quality"><i class="fas fa-pancakes"></i> Блины царские</span>
+    <span class="quality"><i class="fas fa-utensil-spoon"></i> Пельмени сибирские</span>
+    <span class="quality"><i class="fas fa-hand-sparkles"></i> Золотые руки</span>
+    <span class="quality"><i class="fas fa-fire"></i> Хрустящие шкварки</span>
+  </div>
+
+  <div class="button-group">
+    <button class="heart-btn" id="rainbowHeartBtn">
+      <i class="fas fa-heartbeat"></i> 100 000 сердечек
+    </button>
+    <button class="stop-btn" id="stopHeartBtn">
+      <i class="fas fa-stop"></i> Стоп
+    </button>
+  </div>
+  
+  <div class="progress-bar-container" id="progressContainer" style="display: none;">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  <div class="stats" id="statsText"></div>
+  
+  <div class="info-note">
+    <i class="fas fa-arrow-up"></i> Нажми — 100 000 ❤️ взлетят! Кнопка «Стоп» остановит полёт
+  </div>
+  <footer>
+    ✨ Бабушка Наташа — чемпионка мира по вареникам, пельменям и блинам! Гордость семьи! ✨
+  </footer>
+</div>
+
+<div id="heartContainer" class="heaven-canvas"></div>
+
+<script>
+  (function() {
+    const TOTAL_HEARTS = 100000;
+    const MAX_VISIBLE = 200;
+    const HEARTS_PER_BATCH = 14;
+    const INTERVAL_MS = 22;
+    
+    const container = document.getElementById('heartContainer');
+    const btn = document.getElementById('rainbowHeartBtn');
+    const stopBtn = document.getElementById('stopHeartBtn');
+    const progressContainer = document.getElementById('progressContainer');
+    const progressBar = document.getElementById('progressBar');
+    const statsText = document.getElementById('statsText');
+    
+    let isSpawning = false;
+    let heartsCreated = 0;
+    let spawnInterval = null;
+    let isStopped = false;
+    
+    function updateActiveCount() {
+      if (!container) return 0;
+      return container.children.length;
+    }
+    
+    function updateStats() {
+      if (statsText && isSpawning && !isStopped) {
+        statsText.innerHTML = `<i class="fas fa-heart"></i> Уже вылетело ${heartsCreated.toLocaleString()} из ${TOTAL_HEARTS.toLocaleString()} сердечек ❤️`;
+      } else if (isStopped && heartsCreated < TOTAL_HEARTS) {
+        statsText.innerHTML = `<i class="fas fa-pause"></i> Остановлено на ${heartsCreated.toLocaleString()} сердечках. Нажмите кнопку, чтобы продолжить!`;
+      } else if (heartsCreated >= TOTAL_HEARTS) {
+        statsText.innerHTML = `<i class="fas fa-check-circle"></i> 100 000 сердечек долетели! Бабушка Наташа счастлива! 🥟❤️`;
+      }
+    }
+    
+    function createSingleHeart() {
+      if (!container) return null;
+      
+      if (updateActiveCount() >= MAX_VISIBLE + 40) {
+        return null;
+      }
+      
+      const heartVariants = ['❤️', '💖', '💗', '💓', '💕', '💝', '💘', '🧡', '❤️🔥', '❣️', '💞', '💟'];
+      const heartChar = heartVariants[Math.floor(Math.random() * heartVariants.length)];
+      const heartDiv = document.createElement('div');
+      heartDiv.className = 'floating-heart';
+      heartDiv.innerHTML = heartChar;
+      heartDiv.style.position = 'absolute';
+      
+      const size = 18 + Math.random() * 44;
+      heartDiv.style.fontSize = size + 'px';
+      const leftPos = Math.random() * 100;
+      heartDiv.style.left = leftPos + '%';
+      const duration = 3.5 + Math.random() * 5.5;
+      heartDiv.style.animationDuration = duration + 's';
+      const delay = Math.random() * 0.8;
+      heartDiv.style.animationDelay = delay + 's';
+      const startRotate = -20 + Math.random() * 40;
+      heartDiv.style.transform = `rotate(${startRotate}deg)`;
+      heartDiv.style.filter = `drop-shadow(0 0 4px rgba(255,70,90,0.7))`;
+      
+      container.appendChild(heartDiv);
+      
+      heartDiv.addEventListener('animationend', () => {
+        if (heartDiv.parentNode) heartDiv.parentNode.removeChild(heartDiv);
+      });
+      
+      return heartDiv;
+    }
+    
+    function addBatch() {
+      if (!isSpawning || isStopped) return;
+      if (heartsCreated >= TOTAL_HEARTS) {
+        finishSpawning();
+        return;
+      }
+      
+      let toCreate = HEARTS_PER_BATCH;
+      if (heartsCreated + toCreate > TOTAL_HEARTS) {
+        toCreate = TOTAL_HEARTS - heartsCreated;
+      }
+      
+      let created = 0;
+      for (let i = 0; i < toCreate; i++) {
+        const heart = createSingleHeart();
+        if (heart) created++;
+        else break;
+      }
+      
+      heartsCreated += created;
+      
+      const percent = (heartsCreated / TOTAL_HEARTS) * 100;
+      progressBar.style.width = percent + '%';
+      updateStats();
+      
+      if (heartsCreated >= TOTAL_HEARTS) {
+        finishSpawning();
+      }
+      
+      if (heartsCreated % 7000 === 0 && heartsCreated < TOTAL_HEARTS && !isStopped) {
+        const progressDiv = document.createElement('div');
+        progressDiv.innerText = `✨ ${heartsCreated.toLocaleString()} ❤️ уже летят к Наташе! Вареники с капустой и картошкой вдохновляют ✨`;
+        progressDiv.style.position = 'fixed';
+        progressDiv.style.top = '18px';
+        progressDiv.style.left = '50%';
+        progressDiv.style.transform = 'translateX(-50%)';
+        progressDiv.style.backgroundColor = '#ffdbb5';
+        progressDiv.style.color = '#5d2f0e';
+        progressDiv.style.padding = '8px 18px';
+        progressDiv.style.borderRadius = '60px';
+        progressDiv.style.fontWeight = 'bold';
+        progressDiv.style.fontSize = '0.85rem';
+        progressDiv.style.zIndex = '10002';
+        progressDiv.style.backdropFilter = 'blur(6px)';
+        progressDiv.style.whiteSpace = 'nowrap';
+        document.body.appendChild(progressDiv);
+        setTimeout(() => progressDiv.remove(), 2000);
+      }
+    }
+    
+    function finishSpawning() {
+      if (spawnInterval) {
+        clearInterval(spawnInterval);
+        spawnInterval = null;
+      }
+      isSpawning = false;
+      isStopped = false;
+      btn.disabled = false;
+      stopBtn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-heartbeat"></i> 100 000 сердечек';
+      progressContainer.style.display = 'none';
+      updateStats();
+      
+      const finalMsg = document.createElement('div');
+      finalMsg.innerHTML = '🥟💖🏆 100 000 сердец! Бабушка Наташа — чемпионка Олимпиады по вареникам, пельменям и блинам! 🏆💖🥟';
+      finalMsg.style.position = 'fixed';
+      finalMsg.style.bottom = '35%';
+      finalMsg.style.left = '50%';
+      finalMsg.style.transform = 'translateX(-50%)';
+      finalMsg.style.backgroundColor = '#ff7f4a';
+      finalMsg.style.color = 'white';
+      finalMsg.style.padding = '14px 28px';
+      finalMsg.style.borderRadius = '70px';
+      finalMsg.style.fontWeight = '800';
+      finalMsg.style.fontSize = '1rem';
+      finalMsg.style.zIndex = '10003';
+      finalMsg.style.whiteSpace = 'nowrap';
+      finalMsg.style.fontFamily = 'Inter, sans-serif';
+      finalMsg.style.boxShadow = '0 0 25px rgba(255,80,40,0.9)';
+      finalMsg.style.textAlign = 'center';
+      document.body.appendChild(finalMsg);
+      setTimeout(() => finalMsg.remove(), 5000);
+    }
+    
+    function stopHearts() {
+      if (!isSpawning) {
+        const msgDiv = document.createElement('div');
+        msgDiv.innerText = '❤️ Сейчас сердечки не летят. Нажмите кнопку старта!';
+        msgDiv.style.position = 'fixed';
+        msgDiv.style.bottom = '25px';
+        msgDiv.style.left = '50%';
+        msgDiv.style.transform = 'translateX(-50%)';
+        msgDiv.style.backgroundColor = '#f3bc7c';
+        msgDiv.style.color = '#3a240c';
+        msgDiv.style.padding = '10px 22px';
+        msgDiv.style.borderRadius = '50px';
+        msgDiv.style.zIndex = '10001';
+        msgDiv.style.fontWeight = 'bold';
+        document.body.appendChild(msgDiv);
+        setTimeout(() => msgDiv.remove(), 2000);
+        return;
+      }
+      
+      if (isStopped) {
+        // если уже остановлено, то продолжаем
+        isStopped = false;
+        stopBtn.innerHTML = '<i class="fas fa-stop"></i> Стоп';
+        btn.disabled = true;
+        updateStats();
+        
+        if (spawnInterval) clearInterval(spawnInterval);
+        spawnInterval = setInterval(() => addBatch(), INTERVAL_MS);
+        
+        const resumeMsg = document.createElement('div');
+        resumeMsg.innerText = '▶️ Сердечки снова летят! Спасибо, что продолжаете дарить любовь! ❤️';
+        resumeMsg.style.position = 'fixed';
+        resumeMsg.style.bottom = '25px';
+        resumeMsg.style.left = '50%';
+        resumeMsg.style.transform = 'translateX(-50%)';
+        resumeMsg.style.backgroundColor = '#6fbf4c';
+        resumeMsg.style.color = 'white';
+        resumeMsg.style.padding = '10px 22px';
+        resumeMsg.style.borderRadius = '50px';
+        resumeMsg.style.zIndex = '10001';
+        resumeMsg.style.fontWeight = 'bold';
+        document.body.appendChild(resumeMsg);
+        setTimeout(() => resumeMsg.remove(), 2000);
+      } else {
+        // останавливаем
+        isStopped = true;
+        if (spawnInterval) {
+          clearInterval(spawnInterval);
+          spawnInterval = null;
+        }
+        stopBtn.innerHTML = '<i class="fas fa-play"></i> Продолжить';
+        updateStats();
+        
+        const stopMsg = document.createElement('div');
+        stopMsg.innerText = '⏸️ Полет сердечек остановлен. Нажмите "Продолжить", чтобы продолжить дарить любовь!';
+        stopMsg.style.position = 'fixed';
+        stopMsg.style.bottom = '25px';
+        stopMsg.style.left = '50%';
+        stopMsg.style.transform = 'translateX(-50%)';
+        stopMsg.style.backgroundColor = '#ffaa66';
+        stopMsg.style.color = '#3a240c';
+        stopMsg.style.padding = '10px 22px';
+        stopMsg.style.borderRadius = '50px';
+        stopMsg.style.zIndex = '10001';
+        stopMsg.style.fontWeight = 'bold';
+        document.body.appendChild(stopMsg);
+        setTimeout(() => stopMsg.remove(), 2500);
+      }
+    }
+    
+    function launchHeartsStorm() {
+      if (isSpawning && !isStopped) {
+        const msgDiv = document.createElement('div');
+        msgDiv.innerText = '🥟 Сердечки уже летят! Используйте кнопку "Стоп", если хотите остановить ❤️';
+        msgDiv.style.position = 'fixed';
+        msgDiv.style.bottom = '25px';
+        msgDiv.style.left = '50%';
+        msgDiv.style.transform = 'translateX(-50%)';
+        msgDiv.style.backgroundColor = '#f3bc7c';
+        msgDiv.style.color = '#3a240c';
+        msgDiv.style.padding = '10px 22px';
+        msgDiv.style.borderRadius = '50px';
+        msgDiv.style.zIndex = '10001';
+        msgDiv.style.fontWeight = 'bold';
+        document.body.appendChild(msgDiv);
+        setTimeout(() => msgDiv.remove(), 2000);
+        return;
+      }
+      
+      if (isSpawning && isStopped) {
+        // если на паузе, просто продолжаем
+        stopHearts();
+        return;
+      }
+      
+      if (container) {
+        while (container.firstChild) {
+          container.removeChild(container.firstChild);
+        }
+      }
+      
+      heartsCreated = 0;
+      isSpawning = true;
+      isStopped = false;
+      btn.disabled = true;
+      stopBtn.disabled = false;
+      stopBtn.innerHTML = '<i class="fas fa-stop"></i> Стоп';
+      btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Летят сердечки...';
+      progressContainer.style.display = 'block';
+      progressBar.style.width = '0%';
+      updateStats();
+      
+      if (spawnInterval) clearInterval(spawnInterval);
+      spawnInterval = setInterval(() => addBatch(), INTERVAL_MS);
+    }
+    
+    if (btn) {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        launchHeartsStorm();
+      });
+    }
+    
+    if (stopBtn) {
+      stopBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        stopHearts();
+      });
+    }
+    
+    // приветственные сердечки
+    setTimeout(() => {
+      if (container && !isSpawning) {
+        for (let i = 0; i < 12; i++) {
+          setTimeout(() => createSingleHeart(), i * 120);
+        }
+      }
+    }, 500);
+  })();
+</script>
+</body>
+</html>
